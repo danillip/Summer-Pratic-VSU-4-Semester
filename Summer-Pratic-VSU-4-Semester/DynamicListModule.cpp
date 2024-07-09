@@ -65,7 +65,7 @@ void GenerateDynamicList(HWND hWnd) {
         std::vector<std::pair<std::wstring, double>> otherStudents;     // Вектор для остальных студентов
 
         for (const auto& student : students) {
-            if (student.second >= 4.5) {
+            if (student.second == 5.0) {
                 excellentStudents.push_back(student);
             }
             else {

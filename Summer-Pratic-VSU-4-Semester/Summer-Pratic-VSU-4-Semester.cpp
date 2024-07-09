@@ -4,6 +4,9 @@
 #include "framework.h"
 #include "Summer-Pratic-VSU-4-Semester.h"
 #include "DynamicListModule.h" // Включаем заголовочный файл модуля
+#include "DynamicListModule2.h"
+#include "BeenaryTree.h"
+#include "BestStudents.h"
 #include <commctrl.h>
 #include <cstdio>
 
@@ -235,7 +238,21 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             GenerateDynamicList(GetDlgItem(hWnd, IDC_LIST_STUDENTS));
             break;
         }
-
+        case IDC_BUTTON_DYNAMIC_LIST2: {
+            // Вызов функции из DynamicListModule2.cpp для работы с динамическим списком
+            GenerateDynamicList2(GetDlgItem(hWnd, IDC_LIST_STUDENTS));
+            break;
+        }
+        case IDC_BUTTON_BEST_STUDENTS: {
+            GenerateBestStudents(GetDlgItem(hWnd, IDC_LIST_STUDENTS));
+            break;
+        }
+        case IDC_BUTTON_AVL_TREE: {
+            BinaryTree tree;
+            tree.LoadFromFile(L"students.txt");
+            tree.DisplayFirstThreeLevels(GetDlgItem(hWnd, IDC_LIST_STUDENTS));
+            break;
+        }
         }
         break;
     }
@@ -286,11 +303,20 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         // Создание кнопки и окна для "Динамическая цепочка"
         CreateWindowW(L"Button", L"Динамическая цепочка1", WS_VISIBLE | WS_CHILD, 10, 440, 200, 30, hWnd, (HMENU)IDC_BUTTON_DYNAMIC_LIST, hInst, NULL);
 
+        // Создание кнопки и окна для "Динамическая цепочка2"
+        CreateWindowW(L"Button", L"Динамическая цепочка2", WS_VISIBLE | WS_CHILD, 240, 440, 200, 30, hWnd, (HMENU)IDC_BUTTON_DYNAMIC_LIST2, hInst, NULL);
+
+        // Создание кнопки и окна для "Лучшие студенты"
+        CreateWindowW(L"Button", L"Лучшие студенты", WS_VISIBLE | WS_CHILD, 700, 440, 200, 30, hWnd, (HMENU)IDC_BUTTON_BEST_STUDENTS, hInst, NULL);
+
+        // Создание кнопки и окна для "AVL дерева"
+        CreateWindowW(L"Button", L"BeenaryTree", WS_VISIBLE | WS_CHILD, 480, 440, 200, 30, hWnd, (HMENU)IDC_BUTTON_AVL_TREE, hInst, NULL);
+
 
         break;
     }
 
-                  break;
+    break;
     default:
         return DefWindowProc(hWnd, message, wParam, lParam);
     }

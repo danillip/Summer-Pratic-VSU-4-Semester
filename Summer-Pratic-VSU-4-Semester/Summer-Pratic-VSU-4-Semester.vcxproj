@@ -127,16 +127,20 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="BeenaryTree.h" />
+    <ClInclude Include="BestStudents.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="DynamicListModule.h" />
     <ClInclude Include="Resource.h" />
-    <ClInclude Include="Student.h" />
+    <ClInclude Include="DynamicListModule2.h" />
     <ClInclude Include="Summer-Pratic-VSU-4-Semester.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BeenaryTree.cpp" />
+    <ClCompile Include="BestStudents.cpp" />
     <ClCompile Include="DynamicListModule.cpp" />
-    <ClCompile Include="student_data.cpp" />
+    <ClCompile Include="DynamicListModule2.cpp" />
     <ClCompile Include="Summer-Pratic-VSU-4-Semester.cpp" />
   </ItemGroup>
   <ItemGroup>
