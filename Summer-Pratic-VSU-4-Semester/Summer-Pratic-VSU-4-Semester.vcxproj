@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="AvlTree.h" />
     <ClInclude Include="BeenaryTree.h" />
     <ClInclude Include="BestStudents.h" />
     <ClInclude Include="framework.h" />
@@ -137,6 +138,7 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AvlTree.cpp" />
     <ClCompile Include="BeenaryTree.cpp" />
     <ClCompile Include="BestStudents.cpp" />
     <ClCompile Include="DynamicListModule.cpp" />

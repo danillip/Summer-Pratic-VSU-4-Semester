@@ -17,6 +17,10 @@ void BinaryTree::Insert(TreeNode*& node, const std::wstring& surname, double ave
     if (!node) {
         node = new TreeNode(surname, averageGrade);
     }
+    else if (surname == node->surname){
+
+        return;
+    }
     else if (averageGrade < node->averageGrade) {
         Insert(node->left, surname, averageGrade);
     }

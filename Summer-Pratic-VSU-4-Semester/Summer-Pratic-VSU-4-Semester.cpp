@@ -6,6 +6,7 @@
 #include "DynamicListModule.h" // Включаем заголовочный файл модуля
 #include "DynamicListModule2.h"
 #include "BeenaryTree.h"
+#include "AvlTree.h"
 #include "BestStudents.h"
 #include <commctrl.h>
 #include <cstdio>
@@ -133,6 +134,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
     static BinaryTree tree; // Статический объект дерева, чтобы сохранить состояние между вызовами
+    static AVLTree avlTree;
 
     switch (message)
     {
@@ -191,11 +193,27 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             // Очистка старых узлов дерева
             tree.ClearVisual(GetDlgItem(hWnd, IDC_LIST_STUDENTS));
 
+            // Очистка старых узлов AVL дерева
+            avlTree.ClearVisual(GetDlgItem(hWnd, IDC_LIST_STUDENTS));
+
             // Очистка списка студентов
             SendMessage(GetDlgItem(hWnd, IDC_LIST_STUDENTS), LB_RESETCONTENT, 0, 0);
             break;
         }
 
+        case IDC_BUTTON_CLEAR_FORM: {
+            //Очистка всех текстовых полей
+            SetDlgItemText(hWnd, IDC_EDIT_NAME, L"");
+            SetDlgItemText(hWnd, IDC_EDIT_SURNAME, L"");
+            SetDlgItemText(hWnd, IDC_EDIT_GRADE1, L"");
+            SetDlgItemText(hWnd, IDC_EDIT_GRADE2, L"");
+            SetDlgItemText(hWnd, IDC_EDIT_GRADE3, L"");
+            SetDlgItemText(hWnd, IDC_EDIT_GRADE4, L"");
+            SetDlgItemText(hWnd, IDC_EDIT_GRADE5, L"");
+
+            break;
+        }
+        
         case IDC_BUTTON_SAVE: {
             wchar_t fileName[MAX_PATH] = L"students.txt";
             FILE* file;
@@ -220,6 +238,9 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
             // Очистка старых узлов дерева
             tree.ClearVisual(GetDlgItem(hWnd, IDC_LIST_STUDENTS));
+
+            // Очистка старых узлов AVL дерева
+            avlTree.ClearVisual(GetDlgItem(hWnd, IDC_LIST_STUDENTS));
 
             wchar_t fileName[MAX_PATH] = L"students.txt";
             FILE* file;
@@ -248,6 +269,9 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             // Очистка старых узлов дерева
             tree.ClearVisual(GetDlgItem(hWnd, IDC_LIST_STUDENTS));
 
+            // Очистка старых узлов AVL дерева
+            avlTree.ClearVisual(GetDlgItem(hWnd, IDC_LIST_STUDENTS));
+
             // Вызов функции из DynamicListModule.cpp для работы с динамическим списком
             GenerateDynamicList(GetDlgItem(hWnd, IDC_LIST_STUDENTS));
             break;
@@ -255,6 +279,9 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         case IDC_BUTTON_DYNAMIC_LIST2: {
             // Очистка старых узлов дерева
             tree.ClearVisual(GetDlgItem(hWnd, IDC_LIST_STUDENTS));
+
+            // Очистка старых узлов AVL дерева
+            avlTree.ClearVisual(GetDlgItem(hWnd, IDC_LIST_STUDENTS));
 
             // Вызов функции из DynamicListModule2.cpp для работы с динамическим списком
             GenerateDynamicList2(GetDlgItem(hWnd, IDC_LIST_STUDENTS));
@@ -264,20 +291,42 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             // Очистка старых узлов дерева
             tree.ClearVisual(GetDlgItem(hWnd, IDC_LIST_STUDENTS));
 
+            // Очистка старых узлов AVL дерева
+            avlTree.ClearVisual(GetDlgItem(hWnd, IDC_LIST_STUDENTS));
+
             GenerateBestStudents(GetDlgItem(hWnd, IDC_LIST_STUDENTS));
             break;
         }
-        case IDC_BUTTON_AVL_TREE: {
-            tree.LoadFromFile(L"students.txt");
+        case IDC_BUTTON_BEENARY_TREE: {
+
+            // Очистка старых узлов AVL дерева
+            avlTree.ClearVisual(GetDlgItem(hWnd, IDC_LIST_STUDENTS));
 
             // Очистка старых узлов дерева
             tree.ClearVisual(GetDlgItem(hWnd, IDC_LIST_STUDENTS));
+
+            tree.LoadFromFile(L"students.txt");
 
             // Очистка IDC_LIST_STUDENTS перед отображением дерева
             SendMessage(GetDlgItem(hWnd, IDC_LIST_STUDENTS), LB_RESETCONTENT, 0, 0);
 
             // Выводим только первые три уровня дерева
-            tree.CreateTreeVisual(GetDlgItem(hWnd, IDC_LIST_STUDENTS), 3);
+            tree.CreateTreeVisual(GetDlgItem(hWnd, IDC_LIST_STUDENTS), 4);
+            break;
+        }
+        case IDC_BUTTON_AVL_TREE:
+        {
+            // Очистка старых узлов дерева
+            tree.ClearVisual(GetDlgItem(hWnd, IDC_LIST_STUDENTS));
+
+            // Очистка старых узлов AVL дерева
+            avlTree.ClearVisual(GetDlgItem(hWnd, IDC_LIST_STUDENTS));
+            // Create an instance of AVLTree
+            //AVLTree avlTree;
+            // Load data from file (provide the correct path)
+            avlTree.LoadFromFile(L"students.txt");
+            // Display the first three levels of the tree
+            avlTree.CreateTreeVisual(hWnd, 3);
             break;
         }
         }
@@ -302,10 +351,10 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         CreateWindowW(L"Edit", L"", WS_VISIBLE | WS_CHILD | WS_BORDER, 120, 10, 200, 20, hWnd, (HMENU)IDC_EDIT_FILENAME, hInst, NULL);
 
         // Кнопки для отправки, сохранения, загрузки и очистки
-        CreateWindowW(L"Button", L"Отправить", WS_VISIBLE | WS_CHILD, 330, 10, 100, 30, hWnd, (HMENU)IDC_BUTTON_SUBMIT, hInst, NULL);
-        CreateWindowW(L"Button", L"Очистить", WS_VISIBLE | WS_CHILD, 440, 10, 100, 30, hWnd, (HMENU)IDC_BUTTON_CLEAR, hInst, NULL);
-        CreateWindowW(L"Button", L"Сохранить файл", WS_VISIBLE | WS_CHILD, 550, 10, 150, 30, hWnd, (HMENU)IDC_BUTTON_SAVE, hInst, NULL);
-        CreateWindowW(L"Button", L"Загрузить файл", WS_VISIBLE | WS_CHILD, 710, 10, 150, 30, hWnd, (HMENU)IDC_BUTTON_LOAD, hInst, NULL);
+        CreateWindowW(L"Button", L"Добавить студента", WS_VISIBLE | WS_CHILD, 650, 95, 140, 30, hWnd, (HMENU)IDC_BUTTON_SUBMIT, hInst, NULL);
+        CreateWindowW(L"Button", L"Очистить поле", WS_VISIBLE | WS_CHILD, 650, 135, 140, 30, hWnd, (HMENU)IDC_BUTTON_CLEAR, hInst, NULL);
+        CreateWindowW(L"Button", L"Сохранить данные", WS_VISIBLE | WS_CHILD, 330, 5, 150, 30, hWnd, (HMENU)IDC_BUTTON_SAVE, hInst, NULL);
+        CreateWindowW(L"Button", L"Загрузить данные", WS_VISIBLE | WS_CHILD, 480, 5, 150, 30, hWnd, (HMENU)IDC_BUTTON_LOAD, hInst, NULL);
 
         // Создание заголовка "Список Студентов"
         CreateWindowW(L"Static", L"Список Студентов", WS_VISIBLE | WS_CHILD, 10, 50, 630, 20, hWnd, (HMENU)IDC_STATIC_TEXT, hInst, NULL);
@@ -324,6 +373,9 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         CreateWindowW(L"Edit", L"", WS_VISIBLE | WS_CHILD | WS_BORDER, 490, 100, 50, 20, hWnd, (HMENU)IDC_EDIT_GRADE4, hInst, NULL);
         CreateWindowW(L"Edit", L"", WS_VISIBLE | WS_CHILD | WS_BORDER, 550, 100, 50, 20, hWnd, (HMENU)IDC_EDIT_GRADE5, hInst, NULL);
 
+        // Создание кнопки для очистки данных
+        CreateWindowW(L"Button", L"Очистить данные", WS_VISIBLE | WS_CHILD, 810, 95, 140, 30, hWnd, (HMENU)IDC_BUTTON_CLEAR_FORM, hInst, NULL);
+
         // Список для отображения студентов (ListBox)
         CreateWindowW(L"ListBox", NULL, WS_VISIBLE | WS_CHILD | WS_BORDER | WS_VSCROLL | LBS_NOTIFY, 10, 130, 630, 290, hWnd, (HMENU)IDC_LIST_STUDENTS, hInst, NULL);
 
@@ -334,10 +386,19 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         CreateWindowW(L"Button", L"Динамическая цепочка2", WS_VISIBLE | WS_CHILD, 240, 440, 200, 30, hWnd, (HMENU)IDC_BUTTON_DYNAMIC_LIST2, hInst, NULL);
 
         // Создание кнопки и окна для "Лучшие студенты"
-        CreateWindowW(L"Button", L"Лучшие студенты", WS_VISIBLE | WS_CHILD, 700, 440, 200, 30, hWnd, (HMENU)IDC_BUTTON_BEST_STUDENTS, hInst, NULL);
+        CreateWindowW(L"Button", L"Лучшие студенты", WS_VISIBLE | WS_CHILD, 930, 440, 200, 30, hWnd, (HMENU)IDC_BUTTON_BEST_STUDENTS, hInst, NULL);
+
+        // Создание кнопки и окна для "Beenary дерева"
+        CreateWindowW(L"Button", L"BeenaryTree", WS_VISIBLE | WS_CHILD, 480, 440, 200, 30, hWnd, (HMENU)IDC_BUTTON_BEENARY_TREE, hInst, NULL);
 
         // Создание кнопки и окна для "AVL дерева"
-        CreateWindowW(L"Button", L"BeenaryTree", WS_VISIBLE | WS_CHILD, 480, 440, 200, 30, hWnd, (HMENU)IDC_BUTTON_AVL_TREE, hInst, NULL);
+        CreateWindowW(L"Button", L"AvlTree", WS_VISIBLE | WS_CHILD, 700, 440, 200, 30, hWnd, (HMENU)IDC_BUTTON_AVL_TREE, hInst, NULL);
+
+        // Кнопка "Редактировать студента"
+        CreateWindowW(L"Button", L"Редактировать студента", WS_VISIBLE | WS_CHILD, 650, 175, 190, 30, hWnd, (HMENU)IDC_BUTTON_EDIT, hInst, NULL);
+
+        // Кнопка "Удалить данные"
+        CreateWindowW(L"Button", L"Удалить данные", WS_VISIBLE | WS_CHILD, 650, 215, 190, 30, hWnd, (HMENU)IDC_BUTTON_DELETE, hInst, NULL);
 
 
         break;
