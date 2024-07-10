@@ -1,4 +1,4 @@
-// Summer-Pratic-VSU-4-Semester.cpp : Определяет точку входа для приложения.
+﻿// Summer-Pratic-VSU-4-Semester.cpp : Определяет точку входа для приложения.
 //
 
 #include "framework.h"
@@ -311,7 +311,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             SendMessage(GetDlgItem(hWnd, IDC_LIST_STUDENTS), LB_RESETCONTENT, 0, 0);
 
             // Выводим только первые три уровня дерева
-            tree.CreateTreeVisual(GetDlgItem(hWnd, IDC_LIST_STUDENTS), 4);
+            tree.CreateTreeVisual(GetDlgItem(hWnd, IDC_LIST_STUDENTS), 3);
             break;
         }
         case IDC_BUTTON_AVL_TREE:
