@@ -2,7 +2,7 @@
 
 #include "resource.h"
 
-// Айдишники кнопок и "экранов"
+// ГЂГ©Г¤ГЁГёГ­ГЁГЄГЁ ГЄГ­Г®ГЇГ®ГЄ ГЁ "ГЅГЄГ°Г Г­Г®Гў"
 #define IDC_BUTTON_SUBMIT      101
 #define IDC_BUTTON_CLEAR       102
 #define IDC_EDIT_FILENAME      103
@@ -30,6 +30,3 @@
 #define IDC_BUTTON_BEENARY_TREE	 123
 #define IDC_BUTTON_AVL_TREE		 124
 #define IDC_BUTTON_CLEAR_FORM	 125
-
-#define IDC_BUTTON_EDIT			 126
-#define IDC_BUTTON_DELETE        127
