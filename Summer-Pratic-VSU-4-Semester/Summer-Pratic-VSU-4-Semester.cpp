@@ -1,4 +1,4 @@
-﻿// Summer-Pratic-VSU-4-Semester.cpp : Определяет точку входа для приложения.
+// Summer-Pratic-VSU-4-Semester.cpp : Определяет точку входа для приложения.
 //
 
 #include "framework.h"
@@ -213,7 +213,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
             break;
         }
-        
+
         case IDC_BUTTON_SAVE: {
             wchar_t fileName[MAX_PATH] = L"students.txt";
             FILE* file;
@@ -393,13 +393,6 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
         // Создание кнопки и окна для "AVL дерева"
         CreateWindowW(L"Button", L"AvlTree", WS_VISIBLE | WS_CHILD, 700, 440, 200, 30, hWnd, (HMENU)IDC_BUTTON_AVL_TREE, hInst, NULL);
-
-        // Кнопка "Редактировать студента"
-        CreateWindowW(L"Button", L"Редактировать студента", WS_VISIBLE | WS_CHILD, 650, 175, 190, 30, hWnd, (HMENU)IDC_BUTTON_EDIT, hInst, NULL);
-
-        // Кнопка "Удалить данные"
-        CreateWindowW(L"Button", L"Удалить данные", WS_VISIBLE | WS_CHILD, 650, 215, 190, 30, hWnd, (HMENU)IDC_BUTTON_DELETE, hInst, NULL);
-
 
         break;
     }
