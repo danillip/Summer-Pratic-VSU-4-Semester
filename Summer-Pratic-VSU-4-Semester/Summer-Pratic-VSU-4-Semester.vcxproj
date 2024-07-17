@@ -128,7 +128,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="AvlTree.h" />
-    <ClInclude Include="BeenaryTree.h" />
+    <ClInclude Include="BinaryTree.h" />
     <ClInclude Include="BestStudents.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="DynamicListModule.h" />
@@ -139,7 +139,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AvlTree.cpp" />
-    <ClCompile Include="BeenaryTree.cpp" />
+    <ClCompile Include="BinaryTree.cpp" />
     <ClCompile Include="BestStudents.cpp" />
     <ClCompile Include="DynamicListModule.cpp" />
     <ClCompile Include="DynamicListModule2.cpp" />

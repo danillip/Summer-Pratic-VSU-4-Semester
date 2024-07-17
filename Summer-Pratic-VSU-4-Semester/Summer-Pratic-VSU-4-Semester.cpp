@@ -5,7 +5,7 @@
 #include "Summer-Pratic-VSU-4-Semester.h"
 #include "DynamicListModule.h" // Включаем заголовочный файл модуля
 #include "DynamicListModule2.h"
-#include "BeenaryTree.h"
+#include "BinaryTree.h"
 #include "AvlTree.h"
 #include "BestStudents.h"
 #include <commctrl.h>
@@ -297,7 +297,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             GenerateBestStudents(GetDlgItem(hWnd, IDC_LIST_STUDENTS));
             break;
         }
-        case IDC_BUTTON_BEENARY_TREE: {
+        case IDC_BUTTON_BINARY_TREE: {
 
             // Очистка старых узлов AVL дерева
             avlTree.ClearVisual(GetDlgItem(hWnd, IDC_LIST_STUDENTS));
@@ -388,8 +388,8 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         // Создание кнопки и окна для "Лучшие студенты"
         CreateWindowW(L"Button", L"Лучшие студенты", WS_VISIBLE | WS_CHILD, 930, 440, 200, 30, hWnd, (HMENU)IDC_BUTTON_BEST_STUDENTS, hInst, NULL);
 
-        // Создание кнопки и окна для "Beenary дерева"
-        CreateWindowW(L"Button", L"BeenaryTree", WS_VISIBLE | WS_CHILD, 480, 440, 200, 30, hWnd, (HMENU)IDC_BUTTON_BEENARY_TREE, hInst, NULL);
+        // Создание кнопки и окна для "Binary дерева"
+        CreateWindowW(L"Button", L"BinaryTree", WS_VISIBLE | WS_CHILD, 480, 440, 200, 30, hWnd, (HMENU)IDC_BUTTON_BINARY_TREE, hInst, NULL);
 
         // Создание кнопки и окна для "AVL дерева"
         CreateWindowW(L"Button", L"AvlTree", WS_VISIBLE | WS_CHILD, 700, 440, 200, 30, hWnd, (HMENU)IDC_BUTTON_AVL_TREE, hInst, NULL);
